@@ -4,11 +4,12 @@ import Image from "next/image";
 import MainHeaderBackground from "./main-header-background";
 import logoImg from "@/assets/logo.png";
 import classes from "./main-header.module.css";
+import NavLink from "./nav-link";
 
 export default function MainHeader() {
 	return (
 		<>
-      <MainHeaderBackground />
+			<MainHeaderBackground />
 			<header className={classes.header}>
 				<Link className={classes.logo} href="/">
 					{/* Image element를 통해 이미지 최적화 할 수 있음 */}
@@ -20,10 +21,10 @@ export default function MainHeader() {
 				<nav className={classes.nav}>
 					<ul>
 						<li>
-							<Link href="/meals">Browse Meals</Link>
+							<NavLink href="/meals">Browse Meals</NavLink>
 						</li>
 						<li>
-							<Link href="/community">Foodies Community</Link>
+							<NavLink href="/community">Foodies Community</NavLink>
 						</li>
 					</ul>
 				</nav>

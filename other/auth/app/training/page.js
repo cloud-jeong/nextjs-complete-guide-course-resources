@@ -9,7 +9,7 @@ export default function TraniningPage() {
 			<ul id="training-sessions">
 				{trainingSessions.map((training) => (
 					<li key={training.id}>
-						<img src={`/trainings/${training.image}`} alt={training.title}></img>
+						<img src={`/trainings/${training.image}`} alt={training.title} />
 						<div>
 							<h2>{training.title}</h2>
 							<p>{training.description}</p>

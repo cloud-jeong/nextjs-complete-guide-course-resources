@@ -1,11 +1,14 @@
 'use client';
 
+import FormSubmit from '@/components/form-submit';
+import { useActionState } from 'react';
 import { useFormState } from 'react-dom';
 
-import FormSubmit from '@/components/form-submit';
-
 export default function PostForm({ action }) {
-  const [state, formAction] = useFormState(action, {});
+
+  const [state, formAction] = useActionState(action, {})
+
+  //const [state, formAction] = useFormState(action, {})
 
   return (
     <>

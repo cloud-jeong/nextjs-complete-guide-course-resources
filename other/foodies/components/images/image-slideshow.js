@@ -26,8 +26,6 @@ const images = [
 export default function ImageSlideshow() {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-	useEffect(() => {}, [])
-
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentImageIndex((prevIndex) =>
@@ -35,7 +33,7 @@ export default function ImageSlideshow() {
 			);
 		}, 5000);
 
-    return () => clearInterval(interval);
+		return () => clearInterval(interval);
 	}, []);
 
 	return (
@@ -44,9 +42,8 @@ export default function ImageSlideshow() {
 				<Image
 					key={index}
 					src={image.image}
-					className={index === currentImageIndex ? classes.active : ''}          
-          alt={image.alt}
-
+					className={index === currentImageIndex ? classes.active : ""}
+					alt={image.alt}
 				/>
 			))}
 		</div>

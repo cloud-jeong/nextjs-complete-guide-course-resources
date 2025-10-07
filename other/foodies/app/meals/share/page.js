@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import ImagePicker from "@/components/meals/image-picker";
 import classes from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import MealFormSubmit from "@/components/meals/meals-form-submit";
-import { useActionState } from "react";
+import { useActionState, useState, useEffect } from "react";
 
 export default function ShareMealPage() {
 	// 'use server'를 위해 별도 파일로 분리: /lib/actions.js
@@ -25,6 +25,20 @@ export default function ShareMealPage() {
 
 	// form submit시 필수필드 등의 check하여 오류 메시지 출력. 입력한 데이터를 유지
 	const [state, formAction] = useActionState(shareMeal, { message: null });
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	if (isLoading) {
+		console.log("isLoading ...");
+	}
+
+	useEffect(() => {
+		setIsLoading(true);
+
+		console.log("share::useEffect() called");
+
+		setIsLoading(false);
+	}, [isLoading]);
 
 	return (
 		<>

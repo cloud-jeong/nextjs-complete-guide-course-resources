@@ -7,7 +7,7 @@ export default function FormSubmit() {
 
   if (status.pending) {
     return <p>Creating post...</p>;
-  } 
+  }
 
   return (
     <>

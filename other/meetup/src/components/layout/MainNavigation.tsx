@@ -9,7 +9,7 @@ const MainNavigation = () => {
 
 	return (
 		<header className={style.header}>
-			<div className={style.logo}>React Meetups</div>
+			<div className={style.logo}>Next Meetups</div>
 			<nav>
 				<ul>
 					<li>
@@ -24,9 +24,9 @@ const MainNavigation = () => {
 					</li>
 					<li>
 						<Link
-							href="/new-meetups"
+							href="/new-meetup"
 							className={
-								path.startsWith("new-meetups")
+								path.startsWith("/new-meetup")
 									? `${style.link} ${style.active}`
 									: style.link
 							}

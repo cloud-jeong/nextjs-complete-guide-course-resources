@@ -9,7 +9,7 @@ export async function saveMeetup(req: NextApiRequest, res: NextApiResponse) {
 		const data = req.body;
 
 		const client = await MongoClient.connect(
-			"mongodb+srv://utcloud:pkU5dlVYzYcta3UY@cluster0.rsrrddj.mongodb.net/meetups?retryWrites=true&w=majority&appName=Cluster0"
+			""
 		);
 
 		const db = client.db();

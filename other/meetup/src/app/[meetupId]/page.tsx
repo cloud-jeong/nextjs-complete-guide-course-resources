@@ -6,7 +6,12 @@ type MeetupDetailParam = {
 	};
 };
 
-const MeetupDetailPage = ({ params }: MeetupDetailParam) => {
+// export default async function MeetupDetailPage({ params }: MeetupDetailParam) {
+const MeetupDetailPage = async ({ params }: MeetupDetailParam) => {
+	const { meetupId } = params;
+
+	console.log(meetupId);
+
 	return (
 		<>
 			<MeetupDetail

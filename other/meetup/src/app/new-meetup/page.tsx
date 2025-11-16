@@ -9,11 +9,20 @@ type meetupDataType = {
 };
 
 const NewMeetup = () => {
-	const addMeetup = (data: meetupDataType) => {
+	const addMeetupHandler = async (data: meetupDataType) => {
 		console.log(data);
+		const response = await fetch("/api/new-meetup", {
+			method: "POST",
+			body: JSON.stringify(data),
+			headers: {
+				"content-type": "application/json",
+			},
+		});
+
+		console.log(response.json());
 	};
 
-	return <NewMeetupFormPage onAddMeetup={addMeetup} />;
+	return <NewMeetupFormPage onAddMeetup={addMeetupHandler} />;
 };
 
 export default NewMeetup;

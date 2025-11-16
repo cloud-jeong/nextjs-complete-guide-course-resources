@@ -9,7 +9,7 @@ const MainNavigation = () => {
 
 	return (
 		<header className={style.header}>
-			<div className={style.logo}>Next Meetups</div>
+			<div className={style.logo}>Meetups</div>
 			<nav>
 				<ul>
 					<li>
@@ -32,6 +32,18 @@ const MainNavigation = () => {
 							}
 						>
 							Add New Meetup
+						</Link>
+					</li>
+					<li>
+						<Link
+							href="/examples"
+							className={
+								path.startsWith("/examples")
+									? `${style.link} ${style.active}`
+									: style.link
+							}
+						>
+							Examples
 						</Link>
 					</li>
 				</ul>

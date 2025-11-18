@@ -13,7 +13,7 @@ const MemoA = memo(function A() {
 const CountPage = () => {
 	console.log("CountPage render");
 	const [count, setCount] = useState(0);
-	const increment = useCallback(() => setCount(count + 1), [count]);
+	const increment = useCallback(() => setCount((count) => count + 1), []);
 	return (
 		<>
 			<h1>App Count: {count}</h1>

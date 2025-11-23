@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const CountUseStatePage = () => {
@@ -54,6 +55,8 @@ const CountUseStatePage = () => {
 				<p>성별: {formState.gender}</p>
 				<button onClick={clickHandler3}>변경</button>
 			</div>
+
+			<Link href="/examples/count-useState/localState">LocalState Example</Link>
 		</>
 	);
 };

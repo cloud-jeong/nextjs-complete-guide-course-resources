@@ -6,7 +6,7 @@ export default function Home() {
 		<main className="page__main">
 			<section className="search-area">
 				<article className="search-area__search">
-					<h2 className="search-area__title">The Sucoding Blog</h2>
+					<h2 className="search-area__title">The UTCloud Blog</h2>
 					<p className="search-area__description">
 						A Blog About Food, Experience, and Recipes.
 					</p>

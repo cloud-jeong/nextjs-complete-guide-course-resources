@@ -1,5 +1,6 @@
-const sql = require('better-sqlite3');
-const db = sql('meals.db');
+const postgres = require('postgres');
+
+const sql = postgres(process.env.DATABASE_URL || 'postgresql://localhost:5432/foodies');
 
 const dummyMeals = [
   {
@@ -149,13 +150,13 @@ const dummyMeals = [
     instructions: `
       1. Prepare the tomatoes:
         Slice fresh tomatoes and arrange them on a plate.
-    
+
       2. Add herbs and seasoning:
          Sprinkle chopped basil, salt, and pepper over the tomatoes.
-    
+
       3. Dress the salad:
          Drizzle with olive oil and balsamic vinegar.
-    
+
       4. Serve:
          Enjoy this simple, flavorful salad as a side dish or light meal.
     `,
@@ -164,36 +165,38 @@ const dummyMeals = [
   },
 ];
 
-db.prepare(`
-   CREATE TABLE IF NOT EXISTS meals (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       slug TEXT NOT NULL UNIQUE,
-       title TEXT NOT NULL,
-       image TEXT NOT NULL,
-       summary TEXT NOT NULL,
-       instructions TEXT NOT NULL,
-       creator TEXT NOT NULL,
-       creator_email TEXT NOT NULL
-    )
-`).run();
-
 async function initData() {
-  const stmt = db.prepare(`
-      INSERT INTO meals VALUES (
-         null,
-         @slug,
-         @title,
-         @image,
-         @summary,
-         @instructions,
-         @creator,
-         @creator_email
-      )
-   `);
+  await sql`
+    CREATE TABLE IF NOT EXISTS meals (
+      id SERIAL PRIMARY KEY,
+      slug TEXT NOT NULL UNIQUE,
+      title TEXT NOT NULL,
+      image TEXT NOT NULL,
+      summary TEXT NOT NULL,
+      instructions TEXT NOT NULL,
+      creator TEXT NOT NULL,
+      creator_email TEXT NOT NULL
+    )
+  `;
 
   for (const meal of dummyMeals) {
-    stmt.run(meal);
+    await sql`
+      INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email)
+      VALUES (
+        ${meal.slug},
+        ${meal.title},
+        ${meal.image},
+        ${meal.summary},
+        ${meal.instructions},
+        ${meal.creator},
+        ${meal.creator_email}
+      )
+      ON CONFLICT (slug) DO NOTHING
+    `;
   }
+
+  await sql.end();
+  console.log('Database initialized!');
 }
 
 initData();
